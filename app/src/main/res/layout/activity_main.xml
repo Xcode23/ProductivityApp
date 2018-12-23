@@ -6,13 +6,536 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="1">
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+            <TableRow>
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="X" />
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Import..." />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="X" />
+
+                <TextView
+                    android:padding="3dip"
+                    android:text="Export..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-E" />
+            </TableRow>
+
+            <View
+                android:layout_height="2dip"
+                android:background="#FF909090" />
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Quit" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Open..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-O" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-S" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:layout_column="1"
+                    android:padding="3dip"
+                    android:text="Save As..." />
+
+                <TextView
+                    android:gravity="right"
+                    android:padding="3dip"
+                    android:text="Ctrl-Shift-S" />
+            </TableRow>
+
+        </TableLayout>
+    </ScrollView>
 </android.support.constraint.ConstraintLayout>
+

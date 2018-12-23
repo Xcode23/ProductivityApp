@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main);
         performFileSearch();
     }
 
@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             if (resultData != null) {
                 try {
                     credentials = readTextFromUri(resultData.getData());
-                }catch(IOException e){System.out.println("IO ERROR\n");}
+                }catch(IOException e){Log.d("Exception", e.toString());}
 
 
                 String database = "jdbc:mariadb://" + credentials.get("host") + ":" + credentials.get("port") + "/" + credentials.get("database");
@@ -77,11 +77,15 @@ public class MainActivity extends AppCompatActivity {
                 String password = credentials.get("password");
                 Connection con = null;
                 Statement stmt = null;
-                System.out.println(database);
-                System.out.println(user);
-                System.out.println(password);
+
                 String[] info = {database, user, password};
-                try{con = (new AuxAsyncDBAccess()).execute(info).get();}catch(Exception e){System.out.println("AHOY");}
+                try{
+                    con = (new AuxAsyncDBAccess()).execute(info).get();
+                    stmt = con.createStatement();
+
+                }catch(Exception e){Log.d("Exception", e.toString());}
+                //stmt = con.createStatement();
+
                 try {
                     //stmt = con.createStatement();
                     //ResultSet rs = stmt.executeQuery("select * from Points");
