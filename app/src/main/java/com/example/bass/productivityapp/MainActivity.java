@@ -6,6 +6,9 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +18,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import java.util.HashMap;
+
+import static android.view.Gravity.CENTER_HORIZONTAL;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -92,6 +97,25 @@ public class MainActivity extends AppCompatActivity {
                     //Log.d();
                 } catch (Exception e) {System.out.println(e);System.out.println("\nOLAOLAOLAOLAOAL\n" + e.getClass().toString());}
 
+                TableLayout mytable = (TableLayout) findViewById(R.id.pointsTable);
+                TableRow newrow = new TableRow(this);
+                TextView newcolumn = new TextView(this);
+                newcolumn.setGravity(CENTER_HORIZONTAL);
+                newcolumn.setText("5");
+                newcolumn.setPadding(3,3,3,3);
+                newrow.addView(newcolumn);
+                newcolumn = new TextView(this);
+                newcolumn.setGravity(CENTER_HORIZONTAL);
+                newcolumn.setText("13/12/2019");
+                newcolumn.setPadding(3,3,3,3);
+                newrow.addView(newcolumn);
+                newcolumn = new TextView(this);
+                newcolumn.setGravity(CENTER_HORIZONTAL);
+                newcolumn.setText("Test");
+                newcolumn.setPadding(3,3,3,3);
+                newrow.addView(newcolumn);
+
+                mytable.addView(newrow);
 
                 //Intent intent = new Intent(this, RandomKanjiActivity.class);
                 //intent.putExtra(CREDENTIALS, credentials);
