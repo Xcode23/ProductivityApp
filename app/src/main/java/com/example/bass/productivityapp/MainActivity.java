@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.HashMap;
 
@@ -71,6 +72,10 @@ public class MainActivity extends AppCompatActivity {
             // Pull that URI using resultData.getData().
             Uri uri = null;
             HashMap<String,String> credentials= null;
+            TableLayout mytable = (TableLayout) findViewById(R.id.pointsTable);
+            TableRow newrow;
+            TextView newcolumn;
+
             if (resultData != null) {
                 try {
                     credentials = readTextFromUri(resultData.getData());
@@ -80,26 +85,41 @@ public class MainActivity extends AppCompatActivity {
                 String database = "jdbc:mariadb://" + credentials.get("host") + ":" + credentials.get("port") + "/" + credentials.get("database");
                 String user = credentials.get("user");
                 String password = credentials.get("password");
-                Connection con = null;
                 Statement stmt = null;
+                ResultSet rs = null;
 
                 String[] info = {database, user, password};
                 try{
-                    con = (new AuxAsyncDBAccess()).execute(info).get();
-                    stmt = con.createStatement();
+                    stmt = new AuxAsyncDBAccess().execute(info).get();
+                    rs = new AuxAsyncQueryDB(stmt).execute("select * from Points").get();
+                    if(rs!=null)Log.d("TEST", "ALLOK");
+                    while(rs.next()){
+                        newrow = new TableRow(this);
+                        newcolumn = new TextView(this);
+                        newcolumn.setGravity(CENTER_HORIZONTAL);
+                        newcolumn.setText(Integer.toString(rs.getInt(2)));
+                        newcolumn.setPadding(3,3,3,3);
+                        newrow.addView(newcolumn);
 
+                        newcolumn = new TextView(this);
+                        newcolumn.setGravity(CENTER_HORIZONTAL);
+                        newcolumn.setText(rs.getDate(3).toString());
+                        newcolumn.setPadding(3,3,3,3);
+                        newrow.addView(newcolumn);
+
+                        newcolumn = new TextView(this);
+                        newcolumn.setGravity(CENTER_HORIZONTAL);
+                        newcolumn.setText(rs.getString(4));
+                        newcolumn.setPadding(3,3,3,3);
+                        newrow.addView(newcolumn);
+
+                        mytable.addView(newrow);
+                    }
                 }catch(Exception e){Log.d("Exception", e.toString());}
-                //stmt = con.createStatement();
 
-                try {
-                    //stmt = con.createStatement();
-                    //ResultSet rs = stmt.executeQuery("select * from Points");
-                    //Log.d();
-                } catch (Exception e) {System.out.println(e);System.out.println("\nOLAOLAOLAOLAOAL\n" + e.getClass().toString());}
 
-                TableLayout mytable = (TableLayout) findViewById(R.id.pointsTable);
-                TableRow newrow = new TableRow(this);
-                TextView newcolumn = new TextView(this);
+                newrow = new TableRow(this);
+                newcolumn = new TextView(this);
                 newcolumn.setGravity(CENTER_HORIZONTAL);
                 newcolumn.setText("5");
                 newcolumn.setPadding(3,3,3,3);
