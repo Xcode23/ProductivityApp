@@ -1,11 +1,23 @@
 package com.example.bass.productivityapp;
 
+import android.app.ActionBar;
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -27,11 +39,63 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String CREDENTIALS = "com.example.productivityapp.CREDENTIALS";
 
+
+    private TabsPagerAdapter myAdapter;
+    private ViewPager myViewPager;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        performFileSearch();
+
+        myAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+
+        myViewPager = findViewById(R.id.pager);
+        setupViewPager();
+        //performFileSearch();
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.renew_button:
+                renewCurrentFragment();
+                return true;
+
+            case R.id.add_button:
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+                alertDialogBuilder
+                        .setMessage("The Add functionality is not available in this tab!")
+                        .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog,int id) {
+                                // if this button is clicked, close
+                                // current activity
+                                //MainActivity.this.finish();
+                                dialog.cancel();
+                            }
+                        });
+                AlertDialog alertDialog = alertDialogBuilder.create();
+                alertDialog.show();
+                return true;
+
+            default:
+                // If we got here, the user's action was not recognized.
+                // Invoke the superclass to handle it.
+                return super.onOptionsItemSelected(item);
+
+        }
+    }
+
+    public void renewCurrentFragment(){
+        myAdapter.updateFragment(0);
+        myViewPager.setAdapter(myAdapter);
     }
 
     private static final int READ_REQUEST_CODE = 42;
@@ -57,9 +121,39 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
+    private void setupViewPager(){
+        myAdapter.updateFragment(0);
+        myAdapter.updateFragment(1);
+        myAdapter.updateFragment(2);
+        myAdapter.updateFragment(3);
+        myViewPager.setAdapter(myAdapter);
+    }
+
     @Override
-    public void onActivityResult(int requestCode, int resultCode,
-                                 Intent resultData) {
+    public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
+
+        /*TabsPagerAdapter myPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        final ViewPager myViewPager  = (ViewPager) findViewById(R.id.pager);
+        myViewPager.setAdapter(myPagerAdapter);
+
+        final ActionBar actionBar = getActionBar();
+
+        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
+            @Override
+            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+                myViewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+
+            }
+
+            @Override
+            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
+
+            }
+        };
 
         // The ACTION_OPEN_DOCUMENT intent was sent with the request code
         // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
@@ -142,7 +236,7 @@ public class MainActivity extends AppCompatActivity {
                 //startActivity(intent);
 
             }
-        }
+        }*/
     }
 
     private HashMap readTextFromUri(Uri uri) throws IOException {

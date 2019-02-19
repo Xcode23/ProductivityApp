@@ -5,7 +5,7 @@ Android App that keeps track of productivity levels
 ## TODO
 
 - Implement tabs
-  - Keep previous status of tabs between changes
+  - Keep previous status of tabs between changes -> OK
   - Create update button
 - Develop Points tab
 - Develop Bounties tab
@@ -24,3 +24,4 @@ Android App that keeps track of productivity levels
   - Add Scheduler Trigger
   - Add Daily, Weekly, Mounthly and Yearly
   - Add Bounties and Schedulers
+- Implement Save Credentials
