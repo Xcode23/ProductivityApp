@@ -11,14 +11,12 @@ import java.util.List;
 
 public class TabsPagerAdapter extends FragmentPagerAdapter {
 
-    private Fragment[] fragmentList = new Fragment[] {null, null, null, null};
-
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
-    public void updateFragment(int i){
-
+    @Override
+    public Fragment getItem(int i) {
         Fragment newFragment = null;
 
         switch(i){
@@ -38,12 +36,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         }
 
         //if(fragmentList[i]!=null) (getSupportFragmentManager()).remove(fragmentList[i]).commitNow();
-        fragmentList[i] = newFragment;
-    }
-
-    @Override
-    public Fragment getItem(int i) {
-        return fragmentList[i];
+        return newFragment;
     }
 
     @Override
@@ -69,5 +62,18 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 break;
         }
         return str;
+    }
+
+    /*public int getItemPosition(Object object) {
+        Fragment f = (Fragment ) object;
+        if (f != null) {
+            f.update();
+        }
+        return super.getItemPosition(object);
+    }*/
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

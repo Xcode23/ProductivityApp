@@ -29,7 +29,9 @@ import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static android.view.Gravity.CENTER_HORIZONTAL;
@@ -43,17 +45,24 @@ public class MainActivity extends AppCompatActivity {
     private TabsPagerAdapter myAdapter;
     private ViewPager myViewPager;
 
+    public ArrayList<String[]> pointsData;
+    public ArrayList<String[]> bountyData;
+    public ArrayList<String[]> schedulerData;
+    public HashMap<String,int[]> dashboardData;
+
+    public static HashMap<String,String> credentials= null;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+        Log.d("HELP","so far so good");
 
-        myViewPager = findViewById(R.id.pager);
-        setupViewPager();
-        //performFileSearch();
+        performFileSearch();
+        //remaining "main" logic in onActivityResult because of asynchronous bullshit
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,7 +74,8 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.renew_button:
-                renewCurrentFragment();
+                updateData(myViewPager.getCurrentItem());
+                myViewPager.getAdapter().notifyDataSetChanged();
                 return true;
 
             case R.id.add_button:
@@ -93,11 +103,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void renewCurrentFragment(){
-        myAdapter.updateFragment(0);
-        myViewPager.setAdapter(myAdapter);
-    }
-
     private static final int READ_REQUEST_CODE = 42;
     /**
      * Fires an intent to spin up the "file chooser" UI and select an image.
@@ -117,144 +122,147 @@ public class MainActivity extends AppCompatActivity {
         // To search for all documents available via installed storage providers,
         // it would be "*/*".
         intent.setType("*/*");
-
+        Log.d("HELP","ok wot?");
         startActivityForResult(intent, READ_REQUEST_CODE);
-    }
-
-    private void setupViewPager(){
-        myAdapter.updateFragment(0);
-        myAdapter.updateFragment(1);
-        myAdapter.updateFragment(2);
-        myAdapter.updateFragment(3);
-        myViewPager.setAdapter(myAdapter);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
 
-        /*TabsPagerAdapter myPagerAdapter = new TabsPagerAdapter(getSupportFragmentManager());
-        final ViewPager myViewPager  = (ViewPager) findViewById(R.id.pager);
-        myViewPager.setAdapter(myPagerAdapter);
-
-        final ActionBar actionBar = getActionBar();
-
-        ActionBar.TabListener tabListener = new ActionBar.TabListener() {
-            @Override
-            public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-                myViewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-
-            }
-
-            @Override
-            public void onTabReselected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-
-            }
-        };
-
-        // The ACTION_OPEN_DOCUMENT intent was sent with the request code
-        // READ_REQUEST_CODE. If the request code seen here doesn't match, it's the
-        // response to some other intent, and the code below shouldn't run at all.
-
+        Log.d("HELP","ok wot?");
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             // The document selected by the user won't be returned in the intent.
             // Instead, a URI to that document will be contained in the return intent
             // provided to this method as a parameter.
             // Pull that URI using resultData.getData().
-            Uri uri = null;
-            HashMap<String,String> credentials= null;
-            TableLayout mytable = (TableLayout) findViewById(R.id.pointsTable);
-            TableRow newrow;
-            TextView newcolumn;
+            processResultData(resultData);
 
-            if (resultData != null) {
-                try {
-                    credentials = readTextFromUri(resultData.getData());
-                }catch(IOException e){Log.d("Exception", e.toString());}
+            //get data
+            Log.d("HELP", "not yet");
+            Log.d("CREDS",credentials.get("user"));
+            Log.d("CREDS",credentials.get("database"));
+            updateData(0);
 
+            Log.d("MYDATA", pointsData.get(0)[0]);
+            Log.d("MYDATA", pointsData.get(0)[1]);
+            Log.d("MYDATA", pointsData.get(0)[2]);
 
-                String database = "jdbc:mariadb://" + credentials.get("host") + ":" + credentials.get("port") + "/" + credentials.get("database");
-                String user = credentials.get("user");
-                String password = credentials.get("password");
-                Statement stmt = null;
-                ResultSet rs = null;
+            myAdapter = new TabsPagerAdapter(getSupportFragmentManager());
 
-                String[] info = {database, user, password};
-                try{
-                    stmt = new AuxAsyncDBAccess().execute(info).get();
-                    rs = new AuxAsyncQueryDB(stmt).execute("select * from Points").get();
-                    if(rs!=null)Log.d("TEST", "ALLOK");
-                    while(rs.next()){
-                        newrow = new TableRow(this);
-                        newcolumn = new TextView(this);
-                        newcolumn.setGravity(CENTER_HORIZONTAL);
-                        newcolumn.setText(Integer.toString(rs.getInt(2)));
-                        newcolumn.setPadding(3,3,3,3);
-                        newrow.addView(newcolumn);
-
-                        newcolumn = new TextView(this);
-                        newcolumn.setGravity(CENTER_HORIZONTAL);
-                        newcolumn.setText(rs.getDate(3).toString());
-                        newcolumn.setPadding(3,3,3,3);
-                        newrow.addView(newcolumn);
-
-                        newcolumn = new TextView(this);
-                        newcolumn.setGravity(CENTER_HORIZONTAL);
-                        newcolumn.setText(rs.getString(4));
-                        newcolumn.setPadding(3,3,3,3);
-                        newrow.addView(newcolumn);
-
-                        mytable.addView(newrow);
-                    }
-                }catch(Exception e){Log.d("Exception", e.toString());}
-
-
-                newrow = new TableRow(this);
-                newcolumn = new TextView(this);
-                newcolumn.setGravity(CENTER_HORIZONTAL);
-                newcolumn.setText("5");
-                newcolumn.setPadding(3,3,3,3);
-                newrow.addView(newcolumn);
-                newcolumn = new TextView(this);
-                newcolumn.setGravity(CENTER_HORIZONTAL);
-                newcolumn.setText("13/12/2019");
-                newcolumn.setPadding(3,3,3,3);
-                newrow.addView(newcolumn);
-                newcolumn = new TextView(this);
-                newcolumn.setGravity(CENTER_HORIZONTAL);
-                newcolumn.setText("Test");
-                newcolumn.setPadding(3,3,3,3);
-                newrow.addView(newcolumn);
-
-                mytable.addView(newrow);
-
-                //Intent intent = new Intent(this, RandomKanjiActivity.class);
-                //intent.putExtra(CREDENTIALS, credentials);
-                //startActivity(intent);
-
-            }
-        }*/
-    }
-
-    private HashMap readTextFromUri(Uri uri) throws IOException {
-        InputStream inputStream = getContentResolver().openInputStream(uri);
-        BufferedReader reader = new BufferedReader(new InputStreamReader(
-                inputStream));
-        HashMap credentials = new HashMap();
-        String line;
-        while ((line = reader.readLine()) != null) {
-            line=line.trim();
-            String[] parts=line.split(":");
-            for(int i=0; i<parts.length; i++){
-                parts[i]=parts[i].trim();
-            }
-            credentials.put(parts[0],parts[1]);
+            myViewPager = findViewById(R.id.pager);
+            myViewPager.setAdapter(myAdapter);
         }
-        inputStream.close();
-        reader.close();
-        return credentials;
     }
+
+    private void processResultData(Intent resultData){
+        Uri uri = null;
+
+
+        if (resultData != null) {
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(resultData.getData());
+                BufferedReader reader = new BufferedReader(new InputStreamReader(
+                        inputStream));
+                credentials = new HashMap();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    line=line.trim();
+                    String[] parts=line.split(":");
+                    for(int i=0; i<parts.length; i++){
+                        parts[i]=parts[i].trim();
+                    }
+                    credentials.put(parts[0],parts[1]);
+                }
+                inputStream.close();
+                reader.close();
+            } catch (IOException e) {
+                Log.d("Exception", e.toString());
+            }
+        }
+    }
+
+    private void updateData(int i) {
+        String database = "jdbc:mariadb://" + credentials.get("host") + ":" + credentials.get("port") + "/" + credentials.get("database");
+        String user = credentials.get("user");
+        String password = credentials.get("password");
+        Log.d("HELP","ok wot?");
+        try{
+            switch(i) {
+                case 0:
+                    Log.d("HELP","dunno");
+                    pointsData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database,user,password, "points",
+                            "SELECT * FROM Points ORDER BY Date DESC").get();
+                    break;
+                case 1:
+                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
+                    //bountyData = getBountyData(rs);
+                    break;
+                case 2:
+                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
+                    //schedulerData = getSchedulerData(rs);
+                    break;
+                case 3:
+                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
+                    //dashboardData = getDashboardData(rs);
+                    break;
+            }
+        }catch(Exception e){Log.d("Exception", e.toString());}
+    }
+
+    public void buildDB(){
+        /*
+
+
+
+        rs = new AuxAsyncQueryDB(stmt).execute("select * from Points").get();
+        if(rs!=null)Log.d("TEST", "ALLOK");
+        while(rs.next()) {
+            newrow = new TableRow(this);
+            newcolumn = new TextView(this);
+            newcolumn.setGravity(CENTER_HORIZONTAL);
+            newcolumn.setText());
+            newcolumn.setPadding(3, 3, 3, 3);
+            newrow.addView(newcolumn);
+
+            newcolumn = new TextView(this);
+            newcolumn.setGravity(CENTER_HORIZONTAL);
+            newcolumn.setText(rs.getDate(3).toString());
+            newcolumn.setPadding(3, 3, 3, 3);
+            newrow.addView(newcolumn);
+
+            newcolumn = new TextView(this);
+            newcolumn.setGravity(CENTER_HORIZONTAL);
+            newcolumn.setText(rs.getString(4));
+            newcolumn.setPadding(3, 3, 3, 3);
+            newrow.addView(newcolumn);
+
+            mytable.addView(newrow);
+        }
+
+
+        newrow = new TableRow(this);
+        newcolumn = new TextView(this);
+        newcolumn.setGravity(CENTER_HORIZONTAL);
+        newcolumn.setText("5");
+        newcolumn.setPadding(3,3,3,3);
+        newrow.addView(newcolumn);
+        newcolumn = new TextView(this);
+        newcolumn.setGravity(CENTER_HORIZONTAL);
+        newcolumn.setText("13/12/2019");
+        newcolumn.setPadding(3,3,3,3);
+        newrow.addView(newcolumn);
+        newcolumn = new TextView(this);
+        newcolumn.setGravity(CENTER_HORIZONTAL);
+        newcolumn.setText("Test");
+        newcolumn.setPadding(3,3,3,3);
+        newrow.addView(newcolumn);
+
+        mytable.addView(newrow);
+
+        //Intent intent = new Intent(this, RandomKanjiActivity.class);
+        //intent.putExtra(CREDENTIALS, credentials);
+        //startActivity(intent);
+        */
+    }
+
 }

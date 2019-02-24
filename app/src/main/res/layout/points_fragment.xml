@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="0dp"
     android:layout_height="0dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
@@ -20,35 +21,6 @@
         android:stretchColumns="*">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="FRAGMENT POINTS"/>
-
-        </TableRow>
-
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/test_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="placeholder"/>
-
-        </TableRow>
-
-        <!--<TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -78,7 +50,7 @@
                 android:padding="3dip"
                 android:text="Tags"
                 tools:ignore="HardcodedText" />
-        </TableRow>-->
+        </TableRow>
 
     </TableLayout>
 </ScrollView>
