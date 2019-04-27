@@ -4,15 +4,16 @@ Android App that keeps track of productivity levels
 
 ## TODO
 
-- Implement tabs
+- Implement tabs -> OK
   - Keep previous status of tabs between changes -> OK
   - Create update button -> OK
 - Develop Points tab -> OK
-- Develop Bounties tab
-  - Add Bounty
-  - Complete Bounty
+- Develop Bounties tab -> OK
+  - Add Bounty -> OK
+  - Complete Bounty -> OK
 - Develop Scheduler tab
   - Add Scheduler
+  - Turn on/off Scheduler
 - Develop Dashboard tab
   - Dropdown for timeframe
   - Line Graph
@@ -20,14 +21,14 @@ Android App that keeps track of productivity levels
 - Data Model
   - Points -> OK
   - Bounties -> OK
-  - Schedulers
+  - Schedulers -> OK
   - Yearly
   - Monthly
   - Weekly?
-  - Daily
+  - Daily -> OK
 - Update DB
-  - Self-cleaning Points Trigger
-  - Add Scheduler-Bounty Trigger
-  - Add Daily, Weekly?, Mounthly and Yearly
-  - Add Scheduler and Bounty Transactions
+  - Add Points-Daily Trigger -> OK
+  - Add Scheduler-Bounty Trigger -> OK
+  - Add Bounty expiration Trigger -> OK
+  - Weekly?, Mounthly and Yearly
 - Implement Save Credentials

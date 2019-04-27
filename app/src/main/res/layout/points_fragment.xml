@@ -14,7 +14,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:id="@+id/pointsTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -48,7 +48,16 @@
                 android:layout_column="2"
                 android:gravity="center_horizontal"
                 android:padding="3dip"
-                android:text="Tags"
+                android:text="Tag"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text="Type"
                 tools:ignore="HardcodedText" />
         </TableRow>
 

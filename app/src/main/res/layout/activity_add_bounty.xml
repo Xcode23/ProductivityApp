@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddBountyActivity"
+    android:id="@+id/addbountyactivity">
+
+        <EditText
+            android:id="@+id/newpoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="Points"
+            android:inputType="numberSigned"
+            android:padding="3dip"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/newdate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="DueBy"
+            tools:ignore="HardcodedText"
+            android:inputType="date"/>
+
+        <EditText
+            android:id="@+id/newloss"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="Loss"
+            tools:ignore="HardcodedText"
+            android:inputType="numberSigned"/>
+
+        <EditText
+            android:id="@+id/newtag"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="Tag"
+            tools:ignore="HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/newtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="Type"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/addbountybutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:text="Add"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/finishbountybutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:text="Finish"
+            tools:ignore="HardcodedText"/>
+
+</LinearLayout>

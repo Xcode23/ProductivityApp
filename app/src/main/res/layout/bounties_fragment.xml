@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="0dp"
     android:layout_height="0dp"
     android:layout_marginStart="8dp"
@@ -11,27 +12,13 @@
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <TableLayout
         android:id="@+id/bountiesTable"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:stretchColumns="*">
 
         <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="FRAGMENT BOUNTIES" />
-
-        </TableRow>
-
-        <!--<TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -50,7 +37,16 @@
                 android:layout_column="1"
                 android:gravity="center_horizontal"
                 android:padding="3dip"
-                android:text="Date"
+                android:text="DueBy"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text="Loss"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -59,9 +55,100 @@
                 android:layout_column="2"
                 android:gravity="center_horizontal"
                 android:padding="3dip"
-                android:text="Tags"
+                android:text="Tag"
                 tools:ignore="HardcodedText" />
-        </TableRow>-->
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text="Type"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text="Claim"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
 
     </TableLayout>
+    <!--<TableLayout
+        android:id="@+id/newbounty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/newpoints"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:hint="Points"
+                tools:ignore="HardcodedText"
+                android:inputType="numberSigned"/>
+
+            <EditText
+                android:id="@+id/newdate"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="1"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:hint="DueBy"
+                tools:ignore="HardcodedText"
+                android:inputType="date"/>
+
+            <EditText
+                android:id="@+id/newloss"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:hint="Loss"
+                tools:ignore="HardcodedText"
+                android:inputType="numberSigned"/>
+
+            <EditText
+                android:layout_width="49dp"
+                android:layout_height="match_parent"
+                android:layout_column="2"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:hint="Tag"
+                tools:ignore="HardcodedText"/>
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:hint="Type"
+                tools:ignore="HardcodedText"/>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_column="0"
+                android:gravity="center_horizontal"
+                android:padding="3dip"
+                android:text="Add"
+                tools:ignore="HardcodedText" />
+
+        </TableRow>
+    </TableLayout>-->
 </ScrollView>

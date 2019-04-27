@@ -34,8 +34,6 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 break;
 
         }
-
-        //if(fragmentList[i]!=null) (getSupportFragmentManager()).remove(fragmentList[i]).commitNow();
         return newFragment;
     }
 

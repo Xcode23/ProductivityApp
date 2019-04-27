@@ -1,6 +1,5 @@
 package com.example.bass.productivityapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -8,12 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.Toast;
-
-/**
- * Created by User on 4/9/2017.
- */
 
 public class DashboardFragment extends Fragment {
     private static final String TITLE = "Dashboard";

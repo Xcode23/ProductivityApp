@@ -41,14 +41,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String CREDENTIALS = "com.example.productivityapp.CREDENTIALS";
 
-
-    private TabsPagerAdapter myAdapter;
-    private ViewPager myViewPager;
+    public TabsPagerAdapter myAdapter;
+    public ViewPager myViewPager;
 
     public ArrayList<String[]> pointsData;
     public ArrayList<String[]> bountyData;
     public ArrayList<String[]> schedulerData;
-    public HashMap<String,int[]> dashboardData;
+    public ArrayList<String[]> dailyData;
+
+    private static final int READ_REQUEST_CODE = 42;
 
     public static HashMap<String,String> credentials= null;
 
@@ -79,22 +80,31 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.add_button:
-                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+                int current_fragment = myViewPager.getCurrentItem();
+                switch (current_fragment){
+                    case 1:
+                        Intent intent = new Intent(this, AddBountyActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        break;
+                    default:
+                        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
-                alertDialogBuilder
-                        .setMessage("The Add functionality is not available in this tab!")
-                        .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,int id) {
-                                // if this button is clicked, close
-                                // current activity
-                                //MainActivity.this.finish();
-                                dialog.cancel();
-                            }
-                        });
-                AlertDialog alertDialog = alertDialogBuilder.create();
-                alertDialog.show();
-                return true;
-
+                        alertDialogBuilder
+                                .setMessage("The Add functionality is not available in this tab!")
+                                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog,int id) {
+                                        // if this button is clicked, close
+                                        // current activity
+                                        //MainActivity.this.finish();
+                                        dialog.cancel();
+                                    }
+                                });
+                        AlertDialog alertDialog = alertDialogBuilder.create();
+                        alertDialog.show();
+                        return true;
+                }
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
@@ -103,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private static final int READ_REQUEST_CODE = 42;
     /**
      * Fires an intent to spin up the "file chooser" UI and select an image.
      */
@@ -130,18 +139,16 @@ public class MainActivity extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
 
         Log.d("HELP","ok wot?");
-        if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-            // The document selected by the user won't be returned in the intent.
-            // Instead, a URI to that document will be contained in the return intent
-            // provided to this method as a parameter.
-            // Pull that URI using resultData.getData().
-            processResultData(resultData);
+        if (resultCode == Activity.RESULT_OK) {
+            if(requestCode == READ_REQUEST_CODE)
+                processResultData(resultData);
 
             //get data
             Log.d("HELP", "not yet");
-            Log.d("CREDS",credentials.get("user"));
-            Log.d("CREDS",credentials.get("database"));
+            Log.d("CREDS", credentials.get("user"));
+            Log.d("CREDS", credentials.get("database"));
             updateData(0);
+            updateData(1);
 
             Log.d("MYDATA", pointsData.get(0)[0]);
             Log.d("MYDATA", pointsData.get(0)[1]);
@@ -181,88 +188,34 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void updateData(int i) {
+    public void updateData(int i) {
         String database = "jdbc:mariadb://" + credentials.get("host") + ":" + credentials.get("port") + "/" + credentials.get("database");
         String user = credentials.get("user");
         String password = credentials.get("password");
-        Log.d("HELP","ok wot?");
-        try{
-            switch(i) {
+        Log.d("HELP", "ok wot?");
+        try {
+            switch (i) {
                 case 0:
-                    Log.d("HELP","dunno");
-                    pointsData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database,user,password, "points",
+                    Log.d("HELP", "dunno");
+                    pointsData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_points",
                             "SELECT * FROM Points ORDER BY Date DESC").get();
                     break;
                 case 1:
-                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
-                    //bountyData = getBountyData(rs);
+                    bountyData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_bounties",
+                            "SELECT * FROM Bounties").get();
                     break;
                 case 2:
-                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
-                    //schedulerData = getSchedulerData(rs);
+                    schedulerData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_schedulers",
+                            "SELECT * FROM Schedulers ORDER BY Date DESC").get();
                     break;
                 case 3:
-                    //rs = new AuxAsyncQueryDB().execute(database,user,password,"select * from Points").get();
-                    //dashboardData = getDashboardData(rs);
+                    dailyData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_daily",
+                            "SELECT * FROM Schedulers ORDER BY Date DESC").get();
                     break;
             }
-        }catch(Exception e){Log.d("Exception", e.toString());}
-    }
-
-    public void buildDB(){
-        /*
-
-
-
-        rs = new AuxAsyncQueryDB(stmt).execute("select * from Points").get();
-        if(rs!=null)Log.d("TEST", "ALLOK");
-        while(rs.next()) {
-            newrow = new TableRow(this);
-            newcolumn = new TextView(this);
-            newcolumn.setGravity(CENTER_HORIZONTAL);
-            newcolumn.setText());
-            newcolumn.setPadding(3, 3, 3, 3);
-            newrow.addView(newcolumn);
-
-            newcolumn = new TextView(this);
-            newcolumn.setGravity(CENTER_HORIZONTAL);
-            newcolumn.setText(rs.getDate(3).toString());
-            newcolumn.setPadding(3, 3, 3, 3);
-            newrow.addView(newcolumn);
-
-            newcolumn = new TextView(this);
-            newcolumn.setGravity(CENTER_HORIZONTAL);
-            newcolumn.setText(rs.getString(4));
-            newcolumn.setPadding(3, 3, 3, 3);
-            newrow.addView(newcolumn);
-
-            mytable.addView(newrow);
+        } catch (Exception e) {
+            Log.d("Exception", e.toString());
         }
-
-
-        newrow = new TableRow(this);
-        newcolumn = new TextView(this);
-        newcolumn.setGravity(CENTER_HORIZONTAL);
-        newcolumn.setText("5");
-        newcolumn.setPadding(3,3,3,3);
-        newrow.addView(newcolumn);
-        newcolumn = new TextView(this);
-        newcolumn.setGravity(CENTER_HORIZONTAL);
-        newcolumn.setText("13/12/2019");
-        newcolumn.setPadding(3,3,3,3);
-        newrow.addView(newcolumn);
-        newcolumn = new TextView(this);
-        newcolumn.setGravity(CENTER_HORIZONTAL);
-        newcolumn.setText("Test");
-        newcolumn.setPadding(3,3,3,3);
-        newrow.addView(newcolumn);
-
-        mytable.addView(newrow);
-
-        //Intent intent = new Intent(this, RandomKanjiActivity.class);
-        //intent.putExtra(CREDENTIALS, credentials);
-        //startActivity(intent);
-        */
     }
 
 }
