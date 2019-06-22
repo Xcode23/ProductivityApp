@@ -47,7 +47,7 @@ public class AuxAsyncQueryDB extends AsyncTask<String, Void, Object> {
             newpoint[0] = Integer.toString(rs.getInt(2));
             newpoint[1] = rs.getDate(3).toString();
             newpoint[2] = rs.getString(4);
-            newpoint[3] = Utils.ToType(rs.getInt(5));
+            newpoint[3] = Utils.toType(rs.getInt(5));
             newPoints.add(newpoint);
         }
         Statement stmt = rs.getStatement();
@@ -67,7 +67,7 @@ public class AuxAsyncQueryDB extends AsyncTask<String, Void, Object> {
             newbounty[2] = rs.getDate(3).toString();
             newbounty[3] = Integer.toString(rs.getInt(4));
             newbounty[4] = rs.getString(5);
-            newbounty[5] = Utils.ToType(rs.getInt(6));
+            newbounty[5] = Utils.toType(rs.getInt(6));
             newBounties.add(newbounty);
         }
         Statement stmt = rs.getStatement();
@@ -85,15 +85,15 @@ public class AuxAsyncQueryDB extends AsyncTask<String, Void, Object> {
             newscheduler[0] = Integer.toString(rs.getInt(1));
             newscheduler[1] = rs.getString(2);
             newscheduler[2] = rs.getDate(3).toString();
-            newscheduler[3] = Boolean.toString(rs.getInt(4) == 1);
+            newscheduler[3] = Utils.toStatus(rs.getInt(4));
             newscheduler[4] = Integer.toString(rs.getInt(5));
-            newscheduler[5] = Utils.ToTimeQuantity(rs.getInt(6));
+            newscheduler[5] = Utils.toTimeQuantity(rs.getInt(6));
             newscheduler[6] = rs.getDate(7).toString();
             newscheduler[7] = Integer.toString(rs.getInt(8));
-            newscheduler[8] = Utils.ToTimeQuantity(rs.getInt(9));
+            newscheduler[8] = Utils.toTimeQuantity(rs.getInt(9));
             newscheduler[9] = Integer.toString(rs.getInt(10));
             newscheduler[10] = Integer.toString(rs.getInt(11));
-            newscheduler[11] = Utils.ToType(rs.getInt(12));
+            newscheduler[11] = Utils.toType(rs.getInt(12));
             newSchedulers.add(newscheduler);
         }
         Statement stmt = rs.getStatement();
@@ -110,7 +110,7 @@ public class AuxAsyncQueryDB extends AsyncTask<String, Void, Object> {
             String[] newpoint = new String[3];
             newpoint[0] = rs.getDate(1).toString();
             newpoint[1] = Integer.toString(rs.getInt(2));
-            newpoint[2] = Utils.ToType(rs.getInt(3));
+            newpoint[2] = Utils.toType(rs.getInt(3));
             newPoints.add(newpoint);
         }
         Statement stmt = rs.getStatement();

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddBountyActivity"
+    android:id="@+id/addbountyactivity">
+
+        <EditText
+            android:id="@+id/newname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:hint="Name"
+            android:padding="3dip"
+            tools:ignore="HardcodedText" />
+
+        <EditText
+            android:id="@+id/newfrequency"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="FrequencyValue"
+            tools:ignore="HardcodedText"
+            android:inputType="number"/>
+
+
+        <Spinner
+            android:id="@+id/frequencytype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="FrequencyType"
+            tools:ignore="HardcodedText"/>
+
+        <EditText
+            android:id="@+id/newexpiration"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="ExpirationValue"
+            tools:ignore="HardcodedText"
+            android:inputType="numberSigned"/>
+
+
+        <Spinner
+            android:id="@+id/expirationtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="ExpirationType"
+            tools:ignore="HardcodedText"/>
+
+        <EditText
+            android:id="@+id/newpoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="Points"
+            tools:ignore="HardcodedText"/>
+
+        <EditText
+            android:id="@+id/newnegapoints"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="NegaPoints"
+            tools:ignore="HardcodedText"/>
+
+        <Spinner
+            android:id="@+id/newtype"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:hint="Type"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/addschedulerbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:text="Add"
+            tools:ignore="HardcodedText"/>
+
+        <Button
+            android:id="@+id/finishschedulerbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:padding="3dip"
+            android:text="Finish"
+            tools:ignore="HardcodedText"/>
+
+</LinearLayout>

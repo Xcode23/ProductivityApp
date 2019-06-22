@@ -4,13 +4,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-
-import static android.os.Build.ID;
 
 public class AddBountyActivity extends AppCompatActivity {
 
@@ -50,17 +47,17 @@ public class AddBountyActivity extends AppCompatActivity {
 
             EditText points = findViewById(R.id.newpoints);
             tempQuery.append(points.getText());
-            tempQuery.append(" ,\"");
+            tempQuery.append(", \"");
             points.setText("");
 
             EditText duedate = findViewById(R.id.newdate);
             tempQuery.append(duedate.getText());
-            tempQuery.append("\" ,");
+            tempQuery.append("\", ");
             duedate.setText("");
 
             EditText negapoints = findViewById(R.id.newloss);
             tempQuery.append(negapoints.getText());
-            tempQuery.append(" ,\"");
+            tempQuery.append(", \"");
             negapoints.setText("");
 
             EditText tag = findViewById(R.id.newtag);
@@ -69,7 +66,7 @@ public class AddBountyActivity extends AppCompatActivity {
             tag.setText("");
 
             Spinner dropdown = findViewById(R.id.newtype);
-            tempQuery.append(Utils.FromType(dropdown.getSelectedItem().toString()));
+            tempQuery.append(Utils.fromType(dropdown.getSelectedItem().toString()));
             tempQuery.append(");");
 
             String query = tempQuery.toString();

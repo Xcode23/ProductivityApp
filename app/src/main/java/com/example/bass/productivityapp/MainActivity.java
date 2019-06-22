@@ -87,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(intent);
                         break;
                     case 2:
+                        Log.d("TEST", "testing add scheduler");
+                        intent = new Intent(this, AddSchedulerActivity.class);
+                        startActivity(intent);
                         break;
                     default:
                         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -149,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d("CREDS", credentials.get("database"));
             updateData(0);
             updateData(1);
+            updateData(2);
 
             Log.d("MYDATA", pointsData.get(0)[0]);
             Log.d("MYDATA", pointsData.get(0)[1]);
@@ -202,11 +206,11 @@ public class MainActivity extends AppCompatActivity {
                     break;
                 case 1:
                     bountyData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_bounties",
-                            "SELECT * FROM Bounties").get();
+                            "SELECT * FROM Bounties ORDER BY DueDate DESC").get();
                     break;
                 case 2:
                     schedulerData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_schedulers",
-                            "SELECT * FROM Schedulers ORDER BY Date DESC").get();
+                            "SELECT * FROM Schedulers ORDER BY LastDate DESC").get();
                     break;
                 case 3:
                     dailyData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_daily",

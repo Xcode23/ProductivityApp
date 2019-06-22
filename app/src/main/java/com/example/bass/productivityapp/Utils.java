@@ -2,7 +2,7 @@ package com.example.bass.productivityapp;
 
 public class Utils {
 
-    public static String ToType(int num){
+    public static String toType(int num){
         switch(num){
             case 0:
                 return "Work";
@@ -15,7 +15,7 @@ public class Utils {
         }
     }
 
-    public static int FromType(String str) {
+    public static int fromType(String str) {
         switch (str) {
             case "Work":
                 return 0;
@@ -28,33 +28,60 @@ public class Utils {
         }
     }
 
-    public static String ToTimeQuantity(int num){
+    public static String toTimeQuantity(int num){
         switch(num){
             case 0:
-                return "DAY";
+                return "Days";
             case 1:
-                return "WEEK";
+                return "Weeks";
             case 2:
-                return "MONTH";
+                return "Months";
             case 3:
-                return "YEAR";
+                return "Years";
             default:
                 return "Wrong Time!";
         }
     }
 
-    public static int FromTimeQuantity(String str){
+    public static int fromTimeQuantity(String str){
         switch(str){
-            case "DAY":
+            case "Days":
                 return 0;
-            case "WEEK":
+            case "Weeks":
                 return 1;
-            case "MONTH":
+            case "Months":
                 return 2;
-            case "YEAR":
+            case "Years":
                 return 3;
             default:
                 return -1;
         }
     }
+
+    public static String toStatus(int num){
+        switch(num){
+            case 0:
+                return "Hold";
+            case 1:
+                return "Active";
+            case 2:
+                return "Complete";
+            default:
+                return "Wrong Status!";
+        }
+    }
+
+    public static int fromStatus(String str){
+        switch(str){
+            case "Hold":
+                return 0;
+            case "Active":
+                return 1;
+            case "Complete":
+                return 2;
+            default:
+                return -1;
+        }
+    }
+
 }

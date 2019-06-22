@@ -24,7 +24,6 @@ import static android.view.Gravity.CENTER_HORIZONTAL;
 
 public class BountiesFragment extends Fragment {
     private static final String TITLE = "Bounties";
-    private static String[] items = new String[]{"Work", "Hobby","Improv"};
 
     @Nullable
     @Override
