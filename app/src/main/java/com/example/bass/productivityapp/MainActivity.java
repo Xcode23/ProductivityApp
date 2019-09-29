@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public ArrayList<String[]> pointsData;
     public ArrayList<String[]> bountyData;
     public ArrayList<String[]> schedulerData;
-    public ArrayList<String[]> dailyData;
+    public ArrayList<AggregatePoint> dailyData;
 
     private static final int READ_REQUEST_CODE = 42;
 
@@ -213,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
                             "SELECT * FROM Schedulers ORDER BY LastDate DESC").get();
                     break;
                 case 3:
-                    dailyData = (ArrayList<String[]>) new AuxAsyncQueryDB().execute(database, user, password, "get_daily",
-                            "SELECT * FROM Schedulers ORDER BY Date DESC").get();
+                    dailyData = (ArrayList<AggregatePoint>) new AuxAsyncQueryDB().execute(database, user, password, "get_daily",
+                            "SELECT * FROM DailyPoints ORDER BY Day DESC").get();
                     break;
             }
         } catch (Exception e) {

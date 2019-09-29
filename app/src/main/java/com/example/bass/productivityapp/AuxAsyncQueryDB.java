@@ -104,13 +104,13 @@ public class AuxAsyncQueryDB extends AsyncTask<String, Void, Object> {
         return newSchedulers;
     }
 
-    private ArrayList<String[]> getDailyData(ResultSet rs) throws SQLException {
+    private ArrayList<AggregatePoint> getDailyData(ResultSet rs) throws SQLException {
         ArrayList newPoints = new ArrayList();
         while(rs.next()) {
-            String[] newpoint = new String[3];
-            newpoint[0] = rs.getDate(1).toString();
-            newpoint[1] = Integer.toString(rs.getInt(2));
-            newpoint[2] = Utils.toType(rs.getInt(3));
+            AggregatePoint newpoint = new AggregatePoint();
+            newpoint.date = rs.getDate(1);
+            newpoint.value = rs.getInt(2);
+            newpoint.type = rs.getInt(3);
             newPoints.add(newpoint);
         }
         Statement stmt = rs.getStatement();

@@ -11,9 +11,8 @@ Android App that keeps track of productivity levels
 - Develop Bounties tab -> OK
   - Add Bounty -> OK
   - Complete Bounty -> OK
-- Develop Scheduler tab
-  - Add Scheduler
-  - Turn on/off Scheduler
+- Develop Scheduler tab->OK
+  - Add Scheduler->OK
 - Develop Dashboard tab
   - Dropdown for timeframe
   - Line Graph

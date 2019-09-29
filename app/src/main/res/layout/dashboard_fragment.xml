@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="0dp"
     android:layout_height="0dp"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginStart="8dp"
     android:layout_marginTop="8dp"
     android:layout_marginEnd="8dp"
@@ -12,57 +13,13 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent">
 
-    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/dashboardTable"
+    <Button
+        android:id="@+id/calldashboard"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:stretchColumns="*">
+        android:gravity="center_horizontal"
+        android:padding="3dip"
+        android:text="Dashboard"
+        tools:ignore="HardcodedText"/>
 
-        <TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="FRAGMENT DASHBOARD"/>
-
-        </TableRow>
-
-        <!--<TableRow
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="0"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="Points"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_column="1"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="Date"
-                tools:ignore="HardcodedText" />
-
-            <TextView
-                android:layout_width="49dp"
-                android:layout_height="match_parent"
-                android:layout_column="2"
-                android:gravity="center_horizontal"
-                android:padding="3dip"
-                android:text="Tags"
-                tools:ignore="HardcodedText" />
-        </TableRow>-->
-
-    </TableLayout>
 </ScrollView>
